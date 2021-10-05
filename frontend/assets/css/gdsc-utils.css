@@ -1,0 +1,51 @@
+.blue-bg {
+  background-color: #4285f4;
+}
+.red-bg {
+  background-color: #db4437;
+}
+.green-bg {
+  background-color: #0f9d58;
+}
+.yellow-bg {
+  background-color: #f4b400;
+}
+.blue-color {
+  color: #4285f4;
+}
+.red-color {
+  color: #db4437;
+}
+.green-color {
+  color: #0f9d58;
+}
+.yellow-color {
+  color: #f4b400;
+}
+.top-left-curve-30 {
+  border-top-left-radius: 30px;
+}
+.top-right-curve-30 {
+  border-top-right-radius: 30px;
+}
+.bottom-left-curve-30 {
+  border-bottom-left-radius: 30px;
+}
+.bottom-right-curve-30 {
+  border-bottom-right-radius: 30px;
+}
+.top-left-curve-20 {
+  border-top-left-radius: 20px;
+}
+.top-right-curve-20 {
+  border-top-right-radius: 20px;
+}
+.bottom-left-curve-20 {
+  border-bottom-left-radius: 20px;
+}
+.bottom-right-curve-20 {
+  border-bottom-right-radius: 20px;
+}
+.rounded-5 {
+  border-radius: 5px;
+}
