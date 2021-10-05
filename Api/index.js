@@ -42,6 +42,41 @@ async function startbrowser() {
   pagesurfer(browser, page, i, finalobj);
 }
 
+
+async function pagesurfer(browser, page, i, finalobj) {
+    if (i == urls.length) {
+      browser
+        .close()
+        .then((response) => {
+          console.log("Browser Session Closed", finalobj);
+        })
+        .catch((response) => console.log("Error closing"));
+      return;
+    }
+    console.log(urls[i]);
+    page
+      .goto(urls[i])
+      .then((response) => {
+        let names = [];
+        page
+          .$$eval(
+            "body > ql-drawer-container > ql-drawer-content > main > div > h1",
+            (name) => {
+              wrappedname = name.map((x) => x.innerHTML.trim());
+              return wrappedname[0];
+            }
+          )
+          .then((response) => {
+            //   username = JSON.stringify(response);
+            username = response;
+            console.log(username);
+
+            
+      })
+      .catch((err) => console.log("Couldn't open page err"));
+  }
+
+
 // setInterval(function () {
 //   startbrowser();
 // }, 360000);
