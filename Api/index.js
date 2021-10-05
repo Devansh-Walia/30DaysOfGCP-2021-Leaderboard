@@ -71,8 +71,27 @@ async function pagesurfer(browser, page, i, finalobj) {
             username = response;
             console.log(username);
 
+            // Crawling Further
+
+            page
+            .$$eval(
+              "body > ql-drawer-container > ql-drawer-content > main > div > div > div > span.ql-subhead-1.l-mts",
+              (names) => {
+                return names.map((x) => x.innerHTML.trim());
+              }
+            )
+            .then((result) => {
+              names = JSON.stringify(result);
+              //   names = result;
+              console.log(names);
+
             
-      })
+        })
+        .catch((err) => console.log("Couldn't get name"));
+      
+      
+            // Aj
+        })
       .catch((err) => console.log("Couldn't open page err"));
   }
 
