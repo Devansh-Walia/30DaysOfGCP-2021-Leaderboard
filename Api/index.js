@@ -1,5 +1,6 @@
 const express = require("express");
 // const mainroutes = require("./routes/mainroutes");
+var cors = require("cors");
 const fs = require("fs/promises");
 const createCsvWriter = require("csv-writer").createArrayCsvWriter;
 
@@ -32,6 +33,17 @@ const csvWriter = createCsvWriter({
 //     "https://www.qwiklabs.com/public_profiles/5ff2c506-64ea-4bc8-b48f-59cfc4152736",
 //     "https://google.qwiklabs.com/public_profiles/1b2f781e-5edc-485f-8fe7-1f63735588d2",
 //   ];
+
+const whitelist = ["https://armaanjain.tech", "chrome.google.com"];
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error());
+    }
+  },
+};
 
 var finalobj = {};
 
