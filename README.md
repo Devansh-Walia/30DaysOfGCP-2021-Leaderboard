@@ -11,10 +11,12 @@ Authors:
 - [Armaan Jain](https://github.com/ARMAAN199)
 - [Anshuman Singla](https://github.com/anshuman710)
 
-## Features
+## contributions
 
-- NodeJS Api for backend architecture, by Armaan
-- Comfortable UI, Ashuman and Devansh
+- NodeJS Api for backend architecture, Armaan
+- Comfortable UI, Anshuman and Devansh
+- fetch-sort functions, chirag
+- JS build, Devansh
 
 ## Tech
 
