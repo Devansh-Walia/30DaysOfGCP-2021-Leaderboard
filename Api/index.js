@@ -48,7 +48,18 @@ const corsOptions = {
 var finalobj = {};
 
 async function startbrowser() {
-  const browser = await puppeteer.launch();
+  //   const browser = await chromium.puppeteer.launch({
+  //     args: chromium.args,
+  //     defaultViewport: chromium.defaultViewport,
+  //     executablePath: await chromium.executablePath,
+  //     headless: true,
+  //     ignoreHTTPSErrors: true,
+  //   });
+  const browser = await puppeteer.launch({
+    headless: true,
+    args: ["--no-sandbox"],
+  });
+
   const page = await browser.newPage();
   let i = 0;
   pagesurfer(browser, page, i, finalobj);
@@ -139,3 +150,5 @@ app.get("/", (req, res, next) => {
 app.listen(port, () => {
   console.log(`App Running on port ${port || process.env.PORT}.`);
 });
+
+//sudo apt-get install libpangocairo-1.0-0 libx11-xcb1 libxcomposite1 libxcursor1 libxdamage1 libxi6 libxtst6 libnss3 libcups2 libxss1 libxrandr2 libgconf2-4 libasound2 libatk1.0-0 libgtk-3-0
