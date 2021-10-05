@@ -85,6 +85,19 @@ async function pagesurfer(browser, page, i, finalobj) {
               //   names = result;
               console.log(names);
 
+
+              // Getting dates
+              page
+              .$$eval(
+                "body > ql-drawer-container > ql-drawer-content > main > div > div > div:nth-child(1) > span.ql-body-2.l-mbs",
+                (name) => {
+                  wrappedname = name.map((x) => x.innerHTML.trim());
+                  return wrappedname[0];
+                }
+              )
+
+
+              // exceptions
             
         })
         .catch((err) => console.log("Couldn't get name"));
