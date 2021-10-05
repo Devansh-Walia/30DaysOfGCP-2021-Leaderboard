@@ -35,6 +35,13 @@ const csvWriter = createCsvWriter({
 
 var finalobj = {};
 
+async function startbrowser() {
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  let i = 0;
+  pagesurfer(browser, page, i, finalobj);
+}
+
 // setInterval(function () {
 //   startbrowser();
 // }, 360000);
