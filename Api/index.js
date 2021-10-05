@@ -42,38 +42,37 @@ async function startbrowser() {
   pagesurfer(browser, page, i, finalobj);
 }
 
-
 async function pagesurfer(browser, page, i, finalobj) {
-    if (i == urls.length) {
-      browser
-        .close()
-        .then((response) => {
-          console.log("Browser Session Closed", finalobj);
-        })
-        .catch((response) => console.log("Error closing"));
-      return;
-    }
-    console.log(urls[i]);
-    page
-      .goto(urls[i])
+  if (i == urls.length) {
+    browser
+      .close()
       .then((response) => {
-        let names = [];
-        page
-          .$$eval(
-            "body > ql-drawer-container > ql-drawer-content > main > div > h1",
-            (name) => {
-              wrappedname = name.map((x) => x.innerHTML.trim());
-              return wrappedname[0];
-            }
-          )
-          .then((response) => {
-            //   username = JSON.stringify(response);
-            username = response;
-            console.log(username);
+        console.log("Browser Session Closed", finalobj);
+      })
+      .catch((response) => console.log("Error closing"));
+    return;
+  }
+  console.log(urls[i]);
+  page
+    .goto(urls[i])
+    .then((response) => {
+      let names = [];
+      page
+        .$$eval(
+          "body > ql-drawer-container > ql-drawer-content > main > div > h1",
+          (name) => {
+            wrappedname = name.map((x) => x.innerHTML.trim());
+            return wrappedname[0];
+          }
+        )
+        .then((response) => {
+          //   username = JSON.stringify(response);
+          username = response;
+          console.log(username);
 
-            // Crawling Further
+          // Crawling Further
 
-            page
+          page
             .$$eval(
               "body > ql-drawer-container > ql-drawer-content > main > div > div > div > span.ql-subhead-1.l-mts",
               (names) => {
@@ -85,29 +84,35 @@ async function pagesurfer(browser, page, i, finalobj) {
               //   names = result;
               console.log(names);
 
-
               // Getting dates
               page
-              .$$eval(
-                "body > ql-drawer-container > ql-drawer-content > main > div > div > div:nth-child(1) > span.ql-body-2.l-mbs",
-                (name) => {
-                  wrappedname = name.map((x) => x.innerHTML.trim());
-                  return wrappedname[0];
-                }
-              )
+                .$$eval(
+                  "body > ql-drawer-container > ql-drawer-content > main > div > div > div:nth-child(1) > span.ql-body-2.l-mbs",
+                  (name) => {
+                    wrappedname = name.map((x) => x.innerHTML.trim());
+                    return wrappedname[0];
+                  }
+                )
+                .then((result) => {
+                  date = JSON.stringify(result);
+                  //   names = result;
+                  console.log(date);
 
+                  finalobj[i] = { Name: username, Quests: names, Date: date };
+                  pagesurfer(browser, page, i + 1, finalobj);
+                })
+                .catch((err) => console.log(err));
+            })
+            .catch((err) => console.log(err));
 
-              // exceptions
-            
+          // exceptions
         })
         .catch((err) => console.log("Couldn't get name"));
-      
-      
-            // Aj
-        })
-      .catch((err) => console.log("Couldn't open page err"));
-  }
 
+      // Aj
+    })
+    .catch((err) => console.log("Couldn't open page err"));
+}
 
 // setInterval(function () {
 //   startbrowser();
