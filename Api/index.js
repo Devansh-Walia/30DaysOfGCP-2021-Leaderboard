@@ -33,6 +33,18 @@ const csvWriter = createCsvWriter({
 //     "https://google.qwiklabs.com/public_profiles/1b2f781e-5edc-485f-8fe7-1f63735588d2",
 //   ];
 
+var finalobj = {};
+
+// setInterval(function () {
+//   startbrowser();
+// }, 360000);
+startbrowser();
+// Refresshes Every 6 minutes
+
+app.get("/", (req, res, next) => {
+  res.send(finalobj);
+});
+
 app.listen(port, () => {
   console.log(`App Running on port ${port || process.env.PORT}.`);
 });
